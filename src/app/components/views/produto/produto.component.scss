@@ -1,0 +1,53 @@
+.container {
+  margin-top: 5px;
+  margin-left: 8px;
+  margin-right: 5px;
+}
+
+.btn-container {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.view-container {
+  margin-top: 5px;
+  margin-left: 8px;
+  margin-right: 5px;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  background-color: #1976d2;
+  /* Blue color */
+  color: #fff;
+  /* White color */
+  border-color: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1565c0;
+    /* Darker shade of blue on hover */
+  }
+
+  &:active {
+    background-color: #0d47a1;
+    /* Even darker shade of blue on active */
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+    /* Blue shadow on focus */
+  }
+}

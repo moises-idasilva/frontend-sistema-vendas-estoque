@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="form-container">
+    <h3 style="text-align: center">Registrar Nova Venda</h3>
+    <form
+      class="product-form"
+      [formGroup]="vendaForm"
+      (ngSubmit)="isCreatingNew() ? criarVenda() : updateVenda()"
+    >
+      <div class="form-group">
+        <label for="cliente">Cliente:</label>
+        <input
+          type="text"
+          id="cliente"
+          formControlName="cliente"
+          placeholder="Nome do Cliente"
+        />
+      </div>
+      <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <input
+          type="number"
+          id="quantidade"
+          formControlName="quantidade"
+          placeholder="Quantidade"
+        />
+      </div>
+
+      <div *ngIf="produtos" class="form-group">
+        <label for="produtos">Produtos:</label>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>Valor Unitário</th>
+                <th>Quantidade Disponível</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let produto of produtos">
+                <td>
+                  <label>
+                    <input
+                      type="checkbox"
+                      [value]="produto"
+                      (change)="onProductSelected(produto, $event)"
+                    />
+                    {{ produto.nome }}
+                  </label>
+                </td>
+                <td>{{ produto.valorUnitario | currency : "BRL" }}</td>
+                <td>{{ produto.quantidadeDisponivel }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="cancel-button" (click)="onCancel()">
+          CANCELAR
+        </button>
+        <button type="submit" class="submit-button">
+          {{ isCreatingNew() ? "SALVAR" : "EDITAR" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

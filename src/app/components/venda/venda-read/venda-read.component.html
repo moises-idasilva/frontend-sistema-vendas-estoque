@@ -1,0 +1,70 @@
+<div class="list-container">
+  <mat-card *ngIf="vendas.length > 0">
+    <mat-card-title style="text-align: center">
+      Lista de Vendas
+    </mat-card-title>
+
+    <mat-card-content>
+      <table mat-table [dataSource]="vendas">
+        <!-- Colunas da tabela -->
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let venda">{{ venda.id }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cliente">
+          <th mat-header-cell *matHeaderCellDef>Cliente</th>
+          <td mat-cell *matCellDef="let venda">{{ venda.cliente }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="valorTotal">
+          <th mat-header-cell *matHeaderCellDef>Valor Total</th>
+          <td mat-cell *matCellDef="let venda">
+            {{ venda.valorTotal | currency : "BRL" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acao">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">
+            Ações
+          </th>
+          <td mat-cell *matCellDef="let venda" style="text-align: center">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="editarVenda(venda.id)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="excluirVenda(venda.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Definição das colunas -->
+        <tr
+          mat-header-row
+          *matHeaderRowDef="['id', 'cliente', 'valorTotal', 'acao']"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let venda;
+            columns: ['id', 'cliente', 'valorTotal', 'acao']
+          "
+        ></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="vendas.length === 0">
+    <h3 style="text-align: center; color: red">
+      Ainda não há vendas cadastradas.
+    </h3>
+  </div>
+</div>
